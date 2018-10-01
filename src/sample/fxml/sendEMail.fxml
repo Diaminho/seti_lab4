@@ -7,18 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="458.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SendEMailController">
    <children>
-      <TextField fx:id="senderID" layoutX="336.0" layoutY="19.0" />
-      <Text layoutX="28.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" />
-      <Text layoutX="72.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" />
-      <PasswordField fx:id="passwordID" layoutX="336.0" layoutY="63.0" />
+      <TextField fx:id="senderID" layoutX="329.0" layoutY="48.0" />
+      <Text layoutX="40.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" />
+      <Text layoutX="82.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" />
+      <PasswordField fx:id="passwordID" layoutX="329.0" layoutY="85.0" />
       <TextArea fx:id="dataTextID" layoutX="45.0" layoutY="193.0" prefHeight="200.0" prefWidth="509.0" />
       <Text layoutX="194.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите текст сообщения в окне ниже" />
-      <Text layoutX="57.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" />
-      <TextField fx:id="receiverID" layoutX="336.0" layoutY="103.0" />
+      <Text layoutX="53.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" />
+      <TextField fx:id="receiverID" layoutX="329.0" layoutY="123.0" />
       <Button fx:id="sendEmailButton" layoutX="45.0" layoutY="412.0" mnemonicParsing="false" onAction="#onSendEMailButton" text="Отправить" />
       <Button fx:id="backButton" layoutX="510.0" layoutY="412.0" mnemonicParsing="false" onAction="#onBackButton" text="Назад" />
+      <Text layoutX="40.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите почтовый сервер" />
+      <TextField fx:id="smtpServerID" layoutX="329.0" layoutY="10.0" />
    </children>
 </AnchorPane>

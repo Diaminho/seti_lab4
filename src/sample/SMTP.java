@@ -45,7 +45,7 @@ public class SMTP {
             System.out.println("SMTP constructor done\n");
         }
 
-    public boolean send(String data, String from, String to, String password)
+    public boolean send(String[] data, String from, String to, String password)
             throws IOException {
         Socket smtpPipe;
         InputStream inn;
@@ -95,8 +95,10 @@ public class SMTP {
         System.out.println(recipientOK);
         System.out.println("DATA");
         out.println("DATA");
-        System.out.println(data);
-        out.println(data);
+        for (int i=0;i<data.length;i++){
+            System.out.println(data[i]);
+            out.println(data[i]);
+        }
         System.out.println(".");
         out.println(".");
         String acceptedOK = in.readLine();
