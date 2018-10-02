@@ -33,4 +33,16 @@ public class MainController {
 
     }
 
+    @FXML
+    public void onReceiveButton(){
+        primaryStage.close();
+        try {
+            new ReceiverController(new Stage());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }

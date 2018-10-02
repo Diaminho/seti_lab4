@@ -27,7 +27,7 @@ public class SendEMailManager {
     Stage primaryStage;
 
     public SendEMailManager(Parent root) {
-        SendEMailManager.root = root;
+        this.root = root;
         init();
     }
 
