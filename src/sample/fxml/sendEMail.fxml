@@ -1,25 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="458.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SendEMailController">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SendEMailController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <TextField fx:id="senderID" layoutX="329.0" layoutY="48.0" />
-      <Text layoutX="40.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" />
-      <Text layoutX="82.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" />
-      <PasswordField fx:id="passwordID" layoutX="329.0" layoutY="85.0" />
-      <TextArea fx:id="dataTextID" layoutX="45.0" layoutY="193.0" prefHeight="200.0" prefWidth="509.0" />
-      <Text layoutX="194.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите текст сообщения в окне ниже" />
-      <Text layoutX="53.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" />
-      <TextField fx:id="receiverID" layoutX="329.0" layoutY="123.0" />
-      <Button fx:id="sendEmailButton" layoutX="45.0" layoutY="412.0" mnemonicParsing="false" onAction="#onSendEMailButton" text="Отправить" />
-      <Button fx:id="backButton" layoutX="510.0" layoutY="412.0" mnemonicParsing="false" onAction="#onBackButton" text="Назад" />
-      <Text layoutX="40.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите почтовый сервер" />
-      <TextField fx:id="smtpServerID" layoutX="329.0" layoutY="10.0" />
+      <TextField fx:id="senderID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
+         </GridPane.margin>
+      </TextField>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <PasswordField fx:id="passwordID" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
+         </GridPane.margin>
+      </PasswordField>
+      <TextArea fx:id="dataTextID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextArea>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите текст сообщения в окне ниже" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <TextField fx:id="receiverID" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="2.0" right="4.0" top="2.0" />
+         </GridPane.margin>
+      </TextField>
+      <Button fx:id="sendEmailButton" mnemonicParsing="false" onAction="#onSendEMailButton" text="Отправить" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Button>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="Назад" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="3.0" />
+         </GridPane.margin>
+      </Button>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите почтовый сервер">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <TextField fx:id="smtpServerID" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
+         </GridPane.margin>
+      </TextField>
    </children>
-</AnchorPane>
+</GridPane>

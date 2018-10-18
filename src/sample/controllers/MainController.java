@@ -13,10 +13,10 @@ public class MainController {
 
     public MainController(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        //MainController.primaryStage = primaryStage;
-        primaryStage.setTitle("Главное меню");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Главное меню");
+        this.primaryStage.setScene(new Scene(root));
+        this.primaryStage.show();
     }
 
     public MainController() {}
@@ -25,7 +25,7 @@ public class MainController {
     public void onSendButton(){
         primaryStage.close();
         try {
-            new SendEMailController(new Stage());
+            new SendEMailController(primaryStage);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -37,7 +37,7 @@ public class MainController {
     public void onReceiveButton(){
         primaryStage.close();
         try {
-            new ReceiverController(new Stage());
+            new ReceiverController(primaryStage);
         } catch(Exception e) {
             e.printStackTrace();
         }

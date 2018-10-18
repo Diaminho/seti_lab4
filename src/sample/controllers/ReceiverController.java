@@ -25,8 +25,8 @@ public class ReceiverController {
         this.primaryStage=primaryStage;
         primaryStage.setTitle("Ввод данных для получения сообщений");
         this.receiverManager = new ReceiverManager(root);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        this.primaryStage.setScene(new Scene(root));
+        this.primaryStage.show();
     }
 
     public ReceiverController() {}
@@ -51,6 +51,22 @@ public class ReceiverController {
             System.out.println(e);
         }
     }
+
+    @FXML
+    public void onDeleteActiveMessage() throws IOException {
+        receiverManager.onDeleteActiveMessage();
+    }
+
+    @FXML
+    public void onDisconnectButton() throws IOException {
+        receiverManager.onDisconnectButton();
+    }
+
+    @FXML
+    public void onOpenMessage() throws IOException {
+        receiverManager.onOpenMessage();
+    }
+
 
 
 }
