@@ -1,6 +1,5 @@
 package sample.managers;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
@@ -13,8 +12,6 @@ import sample.controllers.MainController;
 import java.io.IOException;
 
 public class SendEMailManager {
-    //Stage primaryStage;
-
     private static Parent root;
     TextField smtpServerID;
     TextField senderID;
@@ -46,13 +43,6 @@ public class SendEMailManager {
 
     @FXML
     public void onSendEMailButton() throws IOException {
-        /*
-        String data = "TEST MESSAGE FROM APP";
-        String from = "setilab23@nn.ru";
-        String to = "download4pda@yandex.ru";
-        String password="";
-        String mailHost = "mail.nn.ru";
-        */
         String[] dataText=getDataFromTextArea();
         SMTP mail = new SMTP(smtpServerID.getText());
         if (mail != null) {

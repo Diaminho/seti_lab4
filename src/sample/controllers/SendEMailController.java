@@ -18,7 +18,10 @@ public class SendEMailController {
     private static Stage primaryStage;
 
     public SendEMailController(Stage primaryStage) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../fxml/sendEMail.fxml"));
+        //FXMLLoader loader=new FXMLLoader();
+        //loader.setLocation(getClass().getResource("../fxml/sendEMail.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/sample/fxml/sendEMail.fxml"));
+        //root=loader.load();
         this.primaryStage=primaryStage;
         primaryStage.setTitle("Ввод данных для отправки сообщений");
         this.sendEMailManager = new SendEMailManager(root);

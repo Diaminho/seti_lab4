@@ -11,13 +11,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/fxml/menu.fxml"));
         MainController.primaryStage = primaryStage;
-        primaryStage.setTitle("SMTP клиент");
+        primaryStage.setTitle("SMTP и POP3 клиент");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

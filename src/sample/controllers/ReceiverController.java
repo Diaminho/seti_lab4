@@ -21,7 +21,7 @@ public class ReceiverController {
 
 
     public ReceiverController(Stage primaryStage) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../fxml/receiveEMail.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/sample/fxml/receiveEMail.fxml"));
         this.primaryStage=primaryStage;
         primaryStage.setTitle("Ввод данных для получения сообщений");
         this.receiverManager = new ReceiverManager(root);
@@ -66,7 +66,5 @@ public class ReceiverController {
     public void onOpenMessage() throws IOException {
         receiverManager.onOpenMessage();
     }
-
-
 
 }
