@@ -6,10 +6,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 import sample.SMTP;
+import sample.SettingsXml;
 import sample.controllers.MainController;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SendEMailManager {
     private static Parent root;
@@ -19,13 +23,17 @@ public class SendEMailManager {
     TextField receiverID;
     TextArea dataTextID;
 
+    SettingsXml settingsXml;
 
     @FXML
     Stage primaryStage;
 
-    public SendEMailManager(Parent root) {
+    public SendEMailManager(Parent root) throws IOException, SAXException, ParserConfigurationException {
         this.root = root;
         init();
+        settingsXml=new SettingsXml();
+        ArrayList<String> set=settingsXml.readXMLFile("./src/sample/settings.xml");
+        smtpServerID.setText(set.get(0));
     }
 
 

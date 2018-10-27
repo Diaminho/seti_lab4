@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.controllers.MainController;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     @Override
@@ -18,12 +20,11 @@ public class Main extends Application {
         primaryStage.show();
 
         //XML WORKING
+        /*
         SettingsXml settingsXml=new SettingsXml();
-        String[][] kek=settingsXml.readXMLFile("./src/sample/settings.xml");
-        for (int i=0;i<kek.length;i++){
-            for (int j=0;j<kek[i].length;j++){
-                System.out.println(kek[i][j]);
-            }
+        ArrayList<String> kek=settingsXml.readXMLFile("./src/sample/settings.xml");
+        for (int i=0;i<kek.size();i++){
+            System.out.println(kek.get(i));
         }
 
 
@@ -34,6 +35,7 @@ public class Main extends Application {
             }
         }
         settingsXml.writeXMLFile("./src/sample/settings.xml",str);
+        */
     }
 
     public static void main(String[] args) {

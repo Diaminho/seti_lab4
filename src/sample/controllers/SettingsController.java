@@ -18,7 +18,7 @@ public class SettingsController {
 
     private static Stage primaryStage;
 
-    public SettingsController(Stage primaryStage) throws IOException {
+    public SettingsController(Stage primaryStage) throws IOException, ParserConfigurationException, SAXException {
         root = FXMLLoader.load(getClass().getResource("/sample/fxml/settings.fxml"));
         this.primaryStage=primaryStage;
         primaryStage.setTitle("Настройки");

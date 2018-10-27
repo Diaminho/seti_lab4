@@ -10,6 +10,7 @@ import sample.controllers.MainController;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SettingsManager {
     private static Parent root;
@@ -21,12 +22,28 @@ public class SettingsManager {
     TextField portPOP3ID;
     TextField logPOP3ID;
 
+    SettingsXml settingsXml;
+
     @FXML
     Stage primaryStage;
 
-    public SettingsManager(Parent root) {
+    public SettingsManager(Parent root) throws IOException, SAXException, ParserConfigurationException {
         this.root = root;
         init();
+
+        settingsXml=new SettingsXml();
+        ArrayList<String> settingsDef=settingsXml.readXMLFile("./src/sample/settings.xml");
+
+        //for (int i=0;i<kek.size();i++){
+            //System.out.println(kek.get(i));
+        //}
+        mailHostSMTPID.setText(settingsDef.get(0));
+        portSMTPID.setText(settingsDef.get(1));
+        logSMTPID.setText(settingsDef.get(2));
+        mailHostPOP3ID.setText(settingsDef.get(3));
+        portPOP3ID.setText(settingsDef.get(4));
+        logPOP3ID.setText(settingsDef.get(5));
+
     }
 
 
@@ -43,9 +60,19 @@ public class SettingsManager {
 
     @FXML
     public void onSaveButton() throws IOException, SAXException, ParserConfigurationException {
-        SettingsXml settingsXml=new SettingsXml();
-        settingsXml.readXMLFile("./src/sample/settings.xml");
-        //settingsXml.writeXMLFile("./src/sample/settings.xml");
+        //ArrayList<String> settingsChanged=new ArrayList<>();
+
+        String[][] settingsChanged=new String[2][3];
+
+        settingsChanged[0][0]=mailHostSMTPID.getText();
+        settingsChanged[0][1]=(portSMTPID.getText());
+        settingsChanged[0][2]=(logSMTPID.getText());
+        settingsChanged[1][0]=(mailHostPOP3ID.getText());
+        settingsChanged[1][1]=(portPOP3ID.getText());
+        settingsChanged[1][2]=(logPOP3ID.getText());
+
+
+        settingsXml.writeXMLFile("./src/sample/settings.xml",settingsChanged);
 
 
     }

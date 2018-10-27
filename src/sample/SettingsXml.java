@@ -18,6 +18,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,50 +28,44 @@ public class SettingsXml {
 
     }
 
-    public String[][] readXMLFile(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public ArrayList<String> readXMLFile(String fileName) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(fileName));
         Element element = document.getDocumentElement();
         //System.out.println(element.getTagName());
         //NodeList nodeList = element.getChildNodes();
-        String[][] res=new String[2][3];
-        printElement(element.getChildNodes(), res, 1);
+        ArrayList<String> res=new ArrayList<>();
+        printElement(element.getChildNodes(), res);
         return res;
     }
 
-    public void printElement(NodeList nodeList, String[][] res, int p) {
+    public void printElement(NodeList nodeList, ArrayList<String> res) {
         for (int i = 0; i < nodeList.getLength(); i++) {
             if (nodeList.item(i) instanceof Element) {
                 //System.out.println((Element) nodeList.item(i));
                 if(((Element) nodeList.item(i)).hasAttribute("protocol")) {
                     System.out.println(((Element) nodeList.item(i)).getAttribute("protocol"));
-                    if(((Element) nodeList.item(i)).getAttribute("protocol")=="SMTP"){
-                        p=0;
-                    }
-                    else if(((Element) nodeList.item(i)).getAttribute("protocol")=="POP3"){
-                        p=1;
-                    }
                 }
                 else {
                     if (((Element) nodeList.item(i)).getTagName()=="port") {
                         System.out.println(((Element) nodeList.item(i)).getTagName() + ": " + nodeList.item(i).getTextContent());
-                        res[p][1]=nodeList.item(i).getTextContent();
+                        res.add(nodeList.item(i).getTextContent());
                     }
                     else if (((Element) nodeList.item(i)).getTagName()=="mailhost") {
                         System.out.println(((Element) nodeList.item(i)).getTagName() + ": " + nodeList.item(i).getTextContent());
-                        res[p][0]=nodeList.item(i).getTextContent();
+                        res.add(nodeList.item(i).getTextContent());
                     }
                     else if (((Element) nodeList.item(i)).getTagName()=="log") {
                         System.out.println(((Element) nodeList.item(i)).getTagName() + ": " + nodeList.item(i).getTextContent());
-                        res[p][2]=nodeList.item(i).getTextContent();
+                        res.add(nodeList.item(i).getTextContent());
                     }
                     //res[k / 3][k % 3] = nodeList.item(i).getTextContent();
                     //k++;
                     //str+=nodeList.item(i).getTextContent();
                 }
                 if (nodeList.item(i).hasChildNodes()) {
-                    printElement(nodeList.item(i).getChildNodes(),res,p);
+                    printElement(nodeList.item(i).getChildNodes(),res);
                 }
             }
         }

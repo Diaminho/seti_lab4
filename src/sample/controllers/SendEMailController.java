@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 import sample.managers.SendEMailManager;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 public class SendEMailController {
@@ -17,7 +19,7 @@ public class SendEMailController {
 
     private static Stage primaryStage;
 
-    public SendEMailController(Stage primaryStage) throws IOException {
+    public SendEMailController(Stage primaryStage) throws IOException, ParserConfigurationException, SAXException {
         //FXMLLoader loader=new FXMLLoader();
         //loader.setLocation(getClass().getResource("../fxml/sendEMail.fxml"));
         root = FXMLLoader.load(getClass().getResource("/sample/fxml/sendEMail.fxml"));
