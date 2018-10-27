@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><settings>
+    <setting protocol="SMTP">
+        <mailhost>00</mailhost>
+        <port>01</port>
+        <log>02</log>
+    </setting>
+
+    <setting protocol="POP3">
+        <mailhost>10</mailhost>
+        <port>11</port>
+        <log>12</log>
+    </setting>
+</settings>

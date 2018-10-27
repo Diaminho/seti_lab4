@@ -29,8 +29,6 @@ public class MainController {
         } catch(Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @FXML
@@ -41,8 +39,21 @@ public class MainController {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void onSettingsButton(){
+        primaryStage.close();
+        try {
+            new SettingsController(primaryStage);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onAboutButton(){
 
 
     }
-
 }

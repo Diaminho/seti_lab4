@@ -5,18 +5,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10.0" minWidth="-Infinity" prefHeight="150.0" prefWidth="247.0" vgap="10" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
+<GridPane alignment="center" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" vgap="10" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
    <columnConstraints>
-      <ColumnConstraints maxWidth="171.0" minWidth="10.0" prefWidth="171.0" />
+      <ColumnConstraints minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
    <children>
-    <Button fx:id="sendButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSendButton" prefHeight="26.0" prefWidth="201.0" text="Отправить сообщение" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" onAction="#onReceiveButton" text="Получить сообщения" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+    <Button fx:id="sendButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSendButton" prefHeight="30.0" prefWidth="130.0" text="SMTP клиент" textAlignment="CENTER" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#onReceiveButton" prefHeight="30.0" prefWidth="130.0" text="POP3 клиент" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSettingsButton" prefHeight="30.0" prefWidth="130.0" text="Настройки" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onAboutButton" prefHeight="30.0" prefWidth="130.0" text="О программе" GridPane.rowIndex="3" />
    </children>
 </GridPane>
