@@ -10,6 +10,8 @@
       <element id="archive" name="JavaFXApp.jar">
         <element id="module-output" name="seti_lab3" />
       </element>
+      <element id="module-output" name="seti_lab3" />
+      <element id="archive" name="seti_lab3.jar" />
     </root>
   </artifact>
 </component>
