@@ -17,55 +17,57 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="senderID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="senderID" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
          </GridPane.margin>
       </TextField>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" GridPane.rowIndex="1">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес отправителя" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" GridPane.rowIndex="2">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите пароль" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
       </Text>
-      <PasswordField fx:id="passwordID" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <PasswordField fx:id="passwordID" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
          </GridPane.margin>
       </PasswordField>
-      <TextArea fx:id="dataTextID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <TextArea fx:id="dataTextID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextArea>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите текст сообщения в окне ниже" GridPane.rowIndex="4">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите текст сообщения в окне ниже" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" GridPane.rowIndex="3">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите адрес получателя" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
       </Text>
-      <TextField fx:id="receiverID" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField fx:id="receiverID" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="2.0" right="4.0" top="2.0" />
          </GridPane.margin>
       </TextField>
-      <Button fx:id="sendEmailButton" mnemonicParsing="false" onAction="#onSendEMailButton" text="Отправить" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="sendEmailButton" mnemonicParsing="false" onAction="#onSendEMailButton" text="Отправить" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -73,7 +75,7 @@
             <Insets left="1.0" right="1.0" top="1.0" />
          </padding>
       </Button>
-      <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="Назад" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="Назад" GridPane.halignment="CENTER" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets bottom="3.0" />
          </GridPane.margin>
@@ -88,5 +90,9 @@
             <Insets bottom="2.0" left="2.0" right="4.0" top="2.0" />
          </GridPane.margin>
       </TextField>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Файл с логами" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <TextField fx:id="logsID" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Введите порт" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextField fx:id="portID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>

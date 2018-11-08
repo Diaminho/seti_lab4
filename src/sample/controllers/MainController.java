@@ -31,6 +31,17 @@ public class MainController {
         }
     }
 
+
+    @FXML
+    public void onAboutButton(){
+        primaryStage.close();
+        try {
+            new AboutController(primaryStage);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void onReceiveButton(){
         primaryStage.close();
@@ -51,9 +62,4 @@ public class MainController {
         }
     }
 
-    @FXML
-    public void onAboutButton(){
-
-
-    }
 }

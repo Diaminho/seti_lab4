@@ -7,12 +7,29 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Pop3 {
-    private final static int POP3_PORT = 110;
+    private int POP3_PORT = 110;
     BufferedReader in;
     PrintWriter out;
     InetAddress mailHost;
     String[] mailArray;
     String log;
+    String logFile;
+
+    public int getPOP3_PORT() {
+        return POP3_PORT;
+    }
+
+    public void setPOP3_PORT(int POP3_PORT) {
+        this.POP3_PORT = POP3_PORT;
+    }
+
+    public String getLogFile() {
+        return logFile;
+    }
+
+    public void setLogFile(String logFile) {
+        this.logFile = logFile;
+    }
 
     public void saveToFile(String path){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
@@ -124,7 +141,7 @@ public class Pop3 {
         System.out.println(quitOK);
         log+=quitOK+'\n';
         //System.out.println("LOG: \n"+log);
-        saveToFile("log_pop3.log");
+        saveToFile(logFile);
     }
 
     public int getMessagesCount(String listStr){

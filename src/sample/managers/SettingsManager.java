@@ -22,6 +22,8 @@ public class SettingsManager {
     TextField portPOP3ID;
     TextField logPOP3ID;
 
+    static String fileName="./settings.xml";
+
     SettingsXml settingsXml;
 
     @FXML
@@ -32,7 +34,7 @@ public class SettingsManager {
         init();
 
         settingsXml=new SettingsXml();
-        ArrayList<String> settingsDef=settingsXml.readXMLFile("./src/sample/settings.xml");
+        ArrayList<String> settingsDef=settingsXml.readXMLFile(fileName);
 
         //for (int i=0;i<kek.size();i++){
             //System.out.println(kek.get(i));
@@ -72,7 +74,7 @@ public class SettingsManager {
         settingsChanged[1][2]=(logPOP3ID.getText());
 
 
-        settingsXml.writeXMLFile("./src/sample/settings.xml",settingsChanged);
+        settingsXml.writeXMLFile(fileName,settingsChanged);
 
 
     }

@@ -19,11 +19,13 @@ public class SendEMailManager {
     private static Parent root;
     TextField smtpServerID;
     TextField senderID;
+    TextField portID;
+    TextField logsID;
     PasswordField passwordID;
     TextField receiverID;
     TextArea dataTextID;
 
-    SettingsXml settingsXml;
+    ArrayList settings;
 
     @FXML
     Stage primaryStage;
@@ -31,9 +33,11 @@ public class SendEMailManager {
     public SendEMailManager(Parent root) throws IOException, SAXException, ParserConfigurationException {
         this.root = root;
         init();
-        settingsXml=new SettingsXml();
-        ArrayList<String> set=settingsXml.readXMLFile("./src/sample/settings.xml");
-        smtpServerID.setText(set.get(0));
+
+        settings=SettingsXml.readXMLFile(SettingsManager.fileName);
+        smtpServerID.setText(settings.get(0).toString());
+        portID.setText(settings.get(1).toString());
+        logsID.setText(settings.get(2).toString());
     }
 
 
@@ -43,6 +47,8 @@ public class SendEMailManager {
         senderID=(TextField) root.lookup("#senderID");
         passwordID=(PasswordField) root.lookup("#passwordID");
         receiverID=(TextField) root.lookup("#receiverID");
+        logsID=(TextField) root.lookup("#logsID");
+        portID=(TextField) root.lookup("#portID");
         dataTextID=(TextArea) root.lookup("#dataTextID");
     }
 
@@ -53,6 +59,8 @@ public class SendEMailManager {
     public void onSendEMailButton() throws IOException {
         String[] dataText=getDataFromTextArea();
         SMTP mail = new SMTP(smtpServerID.getText());
+        mail.setSMTP_PORT(Integer.parseInt(portID.getText()));
+        mail.setLogFile(logsID.getText());
         if (mail != null) {
             if (mail.send(dataText, senderID.getText(), receiverID.getText(), passwordID.getText())) {
                 System.out.println("Mail sent.");

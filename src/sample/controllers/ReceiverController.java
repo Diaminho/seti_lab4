@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 import sample.managers.ReceiverManager;
 
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 
@@ -20,7 +22,7 @@ public class ReceiverController {
     private static Stage primaryStage;
 
 
-    public ReceiverController(Stage primaryStage) throws IOException {
+    public ReceiverController(Stage primaryStage) throws IOException, ParserConfigurationException, SAXException {
         root = FXMLLoader.load(getClass().getResource("/sample/fxml/receiveEMail.fxml"));
         this.primaryStage=primaryStage;
         primaryStage.setTitle("Ввод данных для получения сообщений");

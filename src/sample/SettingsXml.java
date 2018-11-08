@@ -28,7 +28,7 @@ public class SettingsXml {
 
     }
 
-    public ArrayList<String> readXMLFile(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public static ArrayList<String> readXMLFile(String fileName) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(fileName));
@@ -40,7 +40,7 @@ public class SettingsXml {
         return res;
     }
 
-    public void printElement(NodeList nodeList, ArrayList<String> res) {
+    public static void printElement(NodeList nodeList, ArrayList<String> res) {
         for (int i = 0; i < nodeList.getLength(); i++) {
             if (nodeList.item(i) instanceof Element) {
                 //System.out.println((Element) nodeList.item(i));

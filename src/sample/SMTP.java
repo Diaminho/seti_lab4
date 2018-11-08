@@ -8,12 +8,29 @@ import java.util.Base64;
 
 public class SMTP {
 
-    private final static int SMTP_PORT = 25;
+    private int SMTP_PORT = 25;
     InetAddress mailHost;
     InetAddress localhost;
     BufferedReader in;
     PrintWriter out;
     String log;
+    String logFile;
+
+    public int getSMTP_PORT() {
+        return SMTP_PORT;
+    }
+
+    public void setSMTP_PORT(int SMTP_PORT) {
+        this.SMTP_PORT = SMTP_PORT;
+    }
+
+    public String getLogFile() {
+        return logFile;
+    }
+
+    public void setLogFile(String logFile) {
+        this.logFile = logFile;
+    }
 
     public InetAddress getMailHost() {
         return mailHost;
@@ -130,7 +147,7 @@ public class SMTP {
         String quitOK = in.readLine();
         System.out.println(quitOK);
         log+=quitOK+"\n";
-        saveToFile("log_smtp.log");
+        saveToFile(logFile);
         return true;
     }
 }
