@@ -22,17 +22,6 @@ public class MainController {
     public MainController() {}
 
     @FXML
-    public void onSendButton(){
-        primaryStage.close();
-        try {
-            new SendEMailController(primaryStage);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
     public void onAboutButton(){
         primaryStage.close();
         try {
@@ -43,10 +32,10 @@ public class MainController {
     }
 
     @FXML
-    public void onReceiveButton(){
+    public void onFTPButton(){
         primaryStage.close();
         try {
-            new ReceiverController(primaryStage);
+            new FTPController(primaryStage);
         } catch(Exception e) {
             e.printStackTrace();
         }

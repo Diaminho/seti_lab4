@@ -8,9 +8,9 @@
     </properties>
     <root id="root">
       <element id="archive" name="JavaFXApp.jar">
-        <element id="module-output" name="seti_lab3" />
+        <element id="module-output" name="seti_lab4" />
       </element>
-      <element id="module-output" name="seti_lab3" />
+      <element id="module-output" name="seti_lab4" />
       <element id="archive" name="seti_lab3.jar" />
     </root>
   </artifact>

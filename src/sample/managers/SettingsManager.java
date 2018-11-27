@@ -14,20 +14,13 @@ import java.util.ArrayList;
 
 public class SettingsManager {
     private static Parent root;
-    TextField mailHostSMTPID;
-    TextField portSMTPID;
-    TextField logSMTPID;
-
-    TextField mailHostPOP3ID;
-    TextField portPOP3ID;
-    TextField logPOP3ID;
+    TextField serverID;
+    TextField portID;
+    TextField logID;
 
     static String fileName="./settings.xml";
-
     SettingsXml settingsXml;
 
-    @FXML
-    Stage primaryStage;
 
     public SettingsManager(Parent root) throws IOException, SAXException, ParserConfigurationException {
         this.root = root;
@@ -36,47 +29,28 @@ public class SettingsManager {
         settingsXml=new SettingsXml();
         ArrayList<String> settingsDef=settingsXml.readXMLFile(fileName);
 
-        //for (int i=0;i<kek.size();i++){
-            //System.out.println(kek.get(i));
-        //}
-        mailHostSMTPID.setText(settingsDef.get(0));
-        portSMTPID.setText(settingsDef.get(1));
-        logSMTPID.setText(settingsDef.get(2));
-        mailHostPOP3ID.setText(settingsDef.get(3));
-        portPOP3ID.setText(settingsDef.get(4));
-        logPOP3ID.setText(settingsDef.get(5));
-
+        serverID.setText(settingsDef.get(0));
+        portID.setText(settingsDef.get(1));
+        logID.setText(settingsDef.get(2));
     }
 
-
     private void init() {
-        mailHostSMTPID= (TextField) root.lookup("#mailHostSMTPID");
-        portSMTPID=(TextField) root.lookup("#portSMTPID");
-        logSMTPID=(TextField) root.lookup("#logSMTPID");
-
-        mailHostPOP3ID= (TextField) root.lookup("#mailHostPOP3ID");
-        portPOP3ID=(TextField) root.lookup("#portPOP3ID");
-        logPOP3ID=(TextField) root.lookup("#logPOP3ID");
-
+        serverID= (TextField) root.lookup("#serverID");
+        portID=(TextField) root.lookup("#portID");
+        logID=(TextField) root.lookup("#logID");
     }
 
     @FXML
     public void onSaveButton() throws IOException, SAXException, ParserConfigurationException {
         //ArrayList<String> settingsChanged=new ArrayList<>();
 
-        String[][] settingsChanged=new String[2][3];
+        String[] settingsChanged=new String[3];
 
-        settingsChanged[0][0]=mailHostSMTPID.getText();
-        settingsChanged[0][1]=(portSMTPID.getText());
-        settingsChanged[0][2]=(logSMTPID.getText());
-        settingsChanged[1][0]=(mailHostPOP3ID.getText());
-        settingsChanged[1][1]=(portPOP3ID.getText());
-        settingsChanged[1][2]=(logPOP3ID.getText());
-
+        settingsChanged[0]=serverID.getText();
+        settingsChanged[1]=(portID.getText());
+        settingsChanged[2]=(logID.getText());
 
         settingsXml.writeXMLFile(fileName,settingsChanged);
-
-
     }
 
     @FXML
@@ -87,5 +61,4 @@ public class SettingsManager {
             e.printStackTrace();
         }
     }
-
 }

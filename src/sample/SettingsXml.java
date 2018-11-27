@@ -52,7 +52,7 @@ public class SettingsXml {
                         System.out.println(((Element) nodeList.item(i)).getTagName() + ": " + nodeList.item(i).getTextContent());
                         res.add(nodeList.item(i).getTextContent());
                     }
-                    else if (((Element) nodeList.item(i)).getTagName()=="mailhost") {
+                    else if (((Element) nodeList.item(i)).getTagName()=="server") {
                         System.out.println(((Element) nodeList.item(i)).getTagName() + ": " + nodeList.item(i).getTextContent());
                         res.add(nodeList.item(i).getTextContent());
                     }
@@ -72,7 +72,7 @@ public class SettingsXml {
 
     }
 
-    public void writeXMLFile(String fileName, String[][] values){
+    public void writeXMLFile(String fileName, String[] values){
 
         try {
             // Строим объектную модель исходного XML файла
@@ -86,38 +86,28 @@ public class SettingsXml {
 
             // файла. Однако, лучше использовать более надежный метод
             // getElementsByTagName().
-            Node[] setting =new Node[2];
-            for (int i=0;i<setting.length;i++){
-                setting[i]=doc.getElementsByTagName("setting").item(i);
-            }
+            Node setting=doc.getElementsByTagName("setting").item(0);
 
             // Для этого - пробежимся по всем дочерним элементам.
-            NodeList[] nodeList =new NodeList[2];
-            for (int i=0;i<setting.length;i++){
-                nodeList[i]=setting[i].getChildNodes();
-            }
+            NodeList nodeList=setting.getChildNodes();
 
-            for (int ii=0;ii<nodeList.length;ii++) {
-                for (int i = 0; i < nodeList[ii].getLength(); i++) {
-                    Node nextNode = nodeList[ii].item(i);
 
-                    if (nextNode.getNodeName().equals("port")) {
-                        nextNode.setTextContent(values[ii][1]);
-                    } else if (nextNode.getNodeName().equals("mailhost")) {
-                        nextNode.setTextContent(values[ii][0]);
-                    } else if (nextNode.getNodeName().equals("log")) {
-                        nextNode.setTextContent(values[ii][2]);
-                    }
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node nextNode = nodeList.item(i);
 
+                if (nextNode.getNodeName().equals("port")) {
+                    nextNode.setTextContent(values[1]);
+                } else if (nextNode.getNodeName().equals("server")) {
+                    nextNode.setTextContent(values[0]);
+                } else if (nextNode.getNodeName().equals("log")) {
+                    nextNode.setTextContent(values[2]);
                 }
             }
-
             // Записываем изменения в XML файл
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(fileName));
             transformer.transform(source, result);
-
             System.out.println("Изменения сохранены");
 
         } catch (SAXException | IOException | ParserConfigurationException
