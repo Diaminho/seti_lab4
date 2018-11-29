@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -128,7 +129,7 @@ public class FTP {
         input.close();
         List fileList=getFileList(files);
         String resLIST=in.readLine();
-        System.out.println(resLIST);
+        //System.out.println(resLIST);
         log+=resLIST;
 
         //get List files or folders
@@ -168,12 +169,16 @@ public class FTP {
     }
 
     private void setFlagsList(List<String> list){
+        //ADD ../ to flags
+        flags.clear();
+        flags.add(1);
         for (String ret:list){
-            if (ret.charAt(0)=='-'){
-                flags.add(0);
-            }
-            else {
-                flags.add(1);
+            if(ret.length()>0) {
+                if (ret.charAt(0) == '-') {
+                    flags.add(0);
+                } else {
+                    flags.add(1);
+                }
             }
         }
     }
@@ -181,10 +186,13 @@ public class FTP {
     public List getFileList(String response) {
         List listOfStr=doSplitString(response);
         List fileList=new ArrayList();
+        //ADD ../
+        fileList.add("../");
         for (Object ret:listOfStr){
-            fileList.add(getFileName((String)ret));
+            if(getFileName((String)ret)!=null) {
+                fileList.add(getFileName((String)ret));
+            }
         }
-
         for (Object ret:fileList){
             System.out.println(ret);
         }
@@ -192,7 +200,14 @@ public class FTP {
     }
 
     private String getFileName(String str){
-        return str.substring(str.lastIndexOf(" ")+1,str.indexOf("\r"));
+        if (str.lastIndexOf(" ")<0){
+            return null;
+        }
+        if (str.indexOf("\r")<0){
+            return null;
+        }
+        else
+            return str.substring(str.lastIndexOf(" ")+1,str.indexOf("\r"));
     }
 
     private int getDataPort(String response){
@@ -217,10 +232,11 @@ public class FTP {
         doPASV();
         Socket dataSocket = new Socket(server, datePort);
         out.println("RETR "+fileName);
+        System.out.println("RETR "+fileName);
+        log+="RETR "+fileName+'\n';
+
 
         BufferedInputStream input = new BufferedInputStream(dataSocket.getInputStream());
-        System.out.println("RETR "+fileName);
-        log+="RETR"+fileName+'\n';
         answer=in.readLine();
         System.out.println(answer);
         log+=answer+'\n';
@@ -242,12 +258,39 @@ public class FTP {
         log+=answer+'\n';
     }
 
+
+    public void uploadFile(String fileName) throws IOException {
+        doPASV();
+        Socket dataSocket = new Socket(server, datePort);
+        String path=getCurrentDir();
+        path=path+fileName.substring(fileName.lastIndexOf("/"));
+        out.println("STOR "+path);
+        System.out.println("STOR "+path);
+        log+="STOR "+path+'\n';
+
+        BufferedOutputStream output = new BufferedOutputStream(dataSocket.getOutputStream());
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
+
+        byte[] b = Files.readAllBytes(new File(fileName).toPath());
+        //String file=new String(b);
+        output.write(b);
+        //System.out.println();
+        output.close();
+
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
+    }
+
     private void doPASV() throws IOException {
         System.out.println("PASV");
         log+="PASV"+'\n';
         out.println("PASV");
         answer=in.readLine();
         System.out.println(answer);
+        log+=answer+'\n';
         datePort= getDataPort(answer);
     }
 
@@ -258,12 +301,50 @@ public class FTP {
         out.println("RNFR "+fileName);
         answer=in.readLine();
         System.out.println(answer);
+        log+=answer+'\n';
 
         System.out.println("RNTO "+outputName);
         log+="RNTO "+outputName+'\n';
         out.println("RNTO "+outputName);
         answer=in.readLine();
         System.out.println(answer);
+        log+=answer+'\n';
+    }
 
+    public void deleteFolder(String path) throws IOException {
+        System.out.println("RMD "+path);
+        log+="RMD "+path+'\n';
+        out.println("RMD "+path);
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
+    }
+
+    public String getCurrentDir() throws IOException {
+        System.out.println("PWD");
+        log+="PWD"+'\n';
+        out.println("PWD");
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
+        return answer.substring(answer.indexOf('"')+1,answer.lastIndexOf('"'));
+    }
+
+    public void changeDir(String newDir) throws IOException {
+        System.out.println("CWD "+newDir);
+        log+="CWD "+newDir+'\n';
+        out.println("CWD "+newDir);
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
+    }
+
+    public void createDir(String newDir) throws IOException {
+        System.out.println("MKD "+newDir);
+        log+="MKD "+newDir+'\n';
+        out.println("MKD "+newDir);
+        answer=in.readLine();
+        System.out.println(answer);
+        log+=answer+'\n';
     }
 }

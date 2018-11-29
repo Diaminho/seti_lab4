@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AboutController {
-    String text1="Программа является почтовым клиентом для протоколов SMTP и POP3.\n" +
+    String text1="Программа является клиентом для протокола FTP.\n" +
             "\nДля функционирования программы необходимо, чтобы файл с настройками settings.xml располагался в папке ./ (текущей папке)\n" +
             "\nРазработали студенты группы ПМИМ-71: Пичугин Д.П. и Хачатрян Д.Р. 2018 год ©";
     TextFlow textFlowID;

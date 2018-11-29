@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
+import sample.MyStage;
 import sample.managers.FTPManager;
 
 
@@ -66,12 +67,43 @@ public class FTPController {
 
     @FXML
     public void onDownloadButton() throws IOException {
-        ftpManager.onDownloadButton();
+        MyStage myStage=new MyStage();
+        String downFileName=myStage.showAndReturn(new InputFormController(myStage));
+        System.out.println(downFileName);
+        if(downFileName.compareTo("")!=0 && downFileName.charAt(0)!=' '){
+            ftpManager.onDownloadButton(downFileName);
+        }
     }
 
     @FXML
-    public void onRenameButton() throws IOException {
-        ftpManager.onRenameButton();
+    public void onRenameButton() throws IOException, InterruptedException {
+        MyStage myStage=new MyStage();
+        String renameStr=myStage.showAndReturn(new InputFormController(myStage));
+        System.out.println(renameStr);
+        if(renameStr.compareTo("")!=0 && renameStr.charAt(0)!=' '){
+            ftpManager.onRenameButton(renameStr);
+        }
+    }
+
+    @FXML
+    public void onUploadButton() throws IOException {
+        ftpManager.onUploadButton();
+    }
+
+    @FXML
+    public void onCreateDirButton() throws IOException {
+        MyStage myStage=new MyStage();
+        String newDirStr=myStage.showAndReturn(new InputFormController(myStage));
+        System.out.println(newDirStr);
+        if(newDirStr.compareTo("")!=0 && newDirStr.charAt(0)!=' '){
+            ftpManager.onCreateDirButton(newDirStr);
+        }
+
+    }
+
+    @FXML
+    public void onChangeDirButton() throws IOException {
+        ftpManager.onChangeDirButton();
     }
 
 }

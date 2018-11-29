@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/sample/fxml/menu.fxml"));
         MainController.primaryStage = primaryStage;
-        primaryStage.setTitle("SMTP и POP3 клиент");
+        primaryStage.setTitle("FTP-клиент");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }

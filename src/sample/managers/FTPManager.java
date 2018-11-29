@@ -1,21 +1,23 @@
 package sample.managers;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 import sample.FTP;
 import sample.SettingsXml;
+import sample.controllers.InputFormController;
 import sample.controllers.MainController;
 
+import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FTPManager {
@@ -26,6 +28,7 @@ public class FTPManager {
     TextField logsID;
     PasswordField passID;
     ListView fileListID;
+    Label pathID;
     FTP ftp;
     int size;
     List settings;
@@ -52,6 +55,7 @@ public class FTPManager {
         portID=(TextField) root.lookup("#portID");
         passID=(PasswordField) root.lookup("#passID");
         fileListID=(ListView) root.lookup("#fileListID");
+        pathID=(Label) root.lookup("#pathID");
     }
 
     @FXML
@@ -69,13 +73,15 @@ public class FTPManager {
         }
         System.out.println("Done.");
         updateFileList();
-
+        pathID.setText(ftp.getCurrentDir());
     }
 
 
     private void updateFileList() throws IOException {
         List fileList= ftp.getFileList();
         size=fileList.size();
+        fileListID.getSelectionModel().clearSelection();
+        fileListID.getItems().clear();
         //fileListID=new ListView<ArrayList>(FXCollections.observableArrayList(fileList));
         for (int i=0;i<fileList.size();i++) {
             fileListID.getItems().add(fileList.get(i));
@@ -101,10 +107,6 @@ public class FTPManager {
                 }
             }
         });
-
-        for (int i=0;i<fileList.size();i++){
-            fileListID.getItems().set(i,fileList.get(i));
-        }
     }
 
     @FXML
@@ -122,8 +124,14 @@ public class FTPManager {
     @FXML
     public void onDeleteButton() throws IOException {
         int selectedFile=fileListID.getSelectionModel().getSelectedIndex();
-        //ArrayList messages=ftp.getFileList();
-        ftp.deleteFile((String)fileListID.getItems().get(selectedFile));
+        //IF FILE SELECTED
+        if ((Integer)ftp.getFlags().get(selectedFile)==0) {
+            ftp.deleteFile((String) fileListID.getItems().get(selectedFile));
+        }
+        //IF FOLDER SELECTED
+        else{
+            ftp.deleteFolder((String) fileListID.getItems().get(selectedFile));
+        }
         fileListID.getItems().remove(selectedFile);
         fileListID.refresh();
     }
@@ -136,13 +144,49 @@ public class FTPManager {
     }
 
     @FXML
-    public void onDownloadButton() throws IOException{
-        ftp.downloadFile((String)fileListID.getSelectionModel().getSelectedItem(),"text.txt");
+    public void onDownloadButton(String saveName) throws IOException{
+        ftp.downloadFile((String)fileListID.getSelectionModel().getSelectedItem(),saveName);
     }
 
     @FXML
-    public void onRenameButton() throws IOException {
-        ftp.renameFileOrDir((String)fileListID.getSelectionModel().getSelectedItem(),"vector.txt");
+    public void onRenameButton(String newName) throws IOException {
+        String oldName=(String)fileListID.getSelectionModel().getSelectedItem();
+        fileListID.getSelectionModel().clearSelection();
+        ftp.renameFileOrDir(oldName,newName);
         updateFileList();
+    }
+
+    @FXML
+    public void onUploadButton() throws IOException {
+        String choosenFile=getFileFromFileChooser();
+        ftp.uploadFile(choosenFile);
+        updateFileList();
+    }
+
+    @FXML
+    public void onChangeDirButton() throws IOException {
+        ftp.changeDir((String)fileListID.getSelectionModel().getSelectedItem());
+        updateFileList();
+        pathID.setText(ftp.getCurrentDir());
+    }
+
+    @FXML
+    public void onCreateDirButton(String dir) throws IOException {
+        ftp.createDir(dir);
+        updateFileList();
+    }
+
+
+    public String getFileFromFileChooser(){
+        JFileChooser fileopen = new JFileChooser();
+        int ret = fileopen.showDialog(null, "Открыть файл");
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            File file = fileopen.getSelectedFile();
+            String fileName=file.getAbsolutePath();
+            System.out.println("Имя файла: "+fileName);
+            //file.;
+            return fileName;
+        }
+        else return "None";
     }
 }
