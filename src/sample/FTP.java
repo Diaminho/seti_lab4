@@ -14,7 +14,7 @@ import java.util.List;
 import static java.lang.Character.isDigit;
 
 public class FTP {
-    private int FTP_PORT = 110;
+    private int FTP_PORT = 21;
     private int datePort;
     private Socket socket = null;
     BufferedReader in;
